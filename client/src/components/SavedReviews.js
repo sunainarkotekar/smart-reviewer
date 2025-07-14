@@ -4,8 +4,8 @@ const SavedReviews = ({
   reviews,
   sentimentFilter,
   sortOrder,
-  onFilterChange,
-  onSortChange,
+  setSentimentFilter,
+  setSortOrder,
 }) => {
   const filteredAndSorted = [...reviews]
     .filter(
@@ -27,7 +27,7 @@ const SavedReviews = ({
           Filter by Sentiment:
           <select
             value={sentimentFilter}
-            onChange={(e) => onFilterChange(e.target.value)}
+            onChange={(e) => setSentimentFilter(e.target.value)}
             style={{ marginLeft: "0.5rem" }}
           >
             <option value="All">All</option>
@@ -41,7 +41,7 @@ const SavedReviews = ({
           Sort by Date:
           <select
             value={sortOrder}
-            onChange={(e) => onSortChange(e.target.value)}
+            onChange={(e) => setSortOrder(e.target.value)}
             style={{ marginLeft: "0.5rem" }}
           >
             <option value="Newest">Newest First</option>

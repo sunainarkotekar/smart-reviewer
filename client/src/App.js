@@ -24,7 +24,10 @@ function App() {
       setSelectedArticle(null);
       setSavedReviews([]);
       setLoading(true);
-      const res = await axios.get(`/api/news?q=${query}`);
+      // const res = await axios.get(`/api/news?q=${query}`); //local
+      const res = await axios.get(
+        `https://smart-reviewer.onrender.com/api/news?q=${query}`
+      );
       setArticles(res.data.articles || []);
     } catch (error) {
       console.error("Error fetching news:", error);
@@ -39,11 +42,15 @@ function App() {
     setAnalysis(null);
     setLoading(true);
     try {
-      const res = await axios.post("/api/reviews", {
-        title: article.title,
-        url: article.url,
-        content: article.content || article.description || "",
-      });
+      // const res = await axios.post("/api/reviews", {} //local
+      const res = await axios.post(
+        "https://smart-reviewer.onrender.com/api/reviews",
+        {
+          title: article.title,
+          url: article.url,
+          content: article.content || article.description || "",
+        }
+      );
       setAnalysis(res.data);
     } catch (error) {
       console.error("Error analyzing article:", error);
@@ -62,7 +69,10 @@ function App() {
       setLoading(true);
       setSentimentFilter("All");
       setSortOrder("Newest");
-      const res = await axios.get("/api/reviews");
+      // const res = await axios.get("/api/reviews"); // local
+      const res = await axios.get(
+        "https://smart-reviewer.onrender.com/api/reviews"
+      ); // remote
       setSavedReviews(res.data || []);
     } catch (err) {
       console.error("Error fetching saved results:", err.message);
